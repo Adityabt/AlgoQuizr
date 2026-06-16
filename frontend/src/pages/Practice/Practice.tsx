@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MdSearch, MdArrowForward } from 'react-icons/md';
 import { API_BASE_URL } from '../../config/api';
+import { Sidebar } from '../../components/dashboard/Sidebar';
 
 interface Topic {
   slug: string;
@@ -40,6 +41,7 @@ export default function Practice() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg)' }}>
+      <Sidebar />
 
       <main className="dashboard-main" style={{ flex: 1, padding: 'clamp(1.5rem, 4vw, 2.5rem)', overflowY: 'auto' }}>
 
@@ -122,7 +124,6 @@ export default function Practice() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
           <AnimatePresence mode="popLayout">
             {loading ? (
-              // Skeleton rows
               Array.from({ length: 5 }).map((_, i) => (
                 <motion.div
                   key={`skel-${i}`}
