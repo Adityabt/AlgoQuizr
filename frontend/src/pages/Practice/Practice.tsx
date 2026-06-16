@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sidebar } from '../../components/dashboard/Sidebar';
 import { MdSearch, MdArrowForward } from 'react-icons/md';
 import { API_BASE_URL } from '../../config/api';
 
