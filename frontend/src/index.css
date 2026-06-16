@@ -1,22 +1,90 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
 
-:root {
-  color-scheme: dark;
-}
-
-* {
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+:root {
+  --bg: #07080f;
+  --bg-surface: #0d0f1a;
+  --bg-elevated: #13162a;
+  --border: rgba(255,255,255,0.07);
+  --border-accent: rgba(139,92,246,0.25);
+
+  --text-primary: #f0f0f5;
+  --text-secondary: #8b8fa8;
+  --text-muted: #4a4d6a;
+
+  --violet: #8b5cf6;
+  --violet-dim: rgba(139,92,246,0.15);
+  --cyan: #22d3ee;
+  --cyan-dim: rgba(34,211,238,0.12);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  min-height: 100vh;
-  background: #030712;
-  color: white;
-  font-family: Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+.navbar-shell {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, calc(100vw - 2rem));
+  z-index: 100;
+  transition:
+    background 0.3s,
+    border-color 0.3s,
+    backdrop-filter 0.3s;
+}
+
+@media (max-width: 767px) {
+  .navbar-shell {
+    width: calc(100vw - 1.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-right {
+    align-items: flex-start !important;
+  }
 }
