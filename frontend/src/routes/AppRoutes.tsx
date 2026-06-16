@@ -9,6 +9,7 @@ import Progress  from "../pages/Progress/Progress";
 import Settings  from "../pages/Settings/Settings";
 import Practice  from "../pages/Practice/Practice";
 import Profile   from "../pages/Profile/Profile";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isLoggedIn } = useAuth();
@@ -37,6 +38,7 @@ const AppRoutes = () => {
       <Route path="/progress"  element={<ProtectedRoute><Progress /></ProtectedRoute>}  />
       <Route path="/settings"  element={<ProtectedRoute><Settings /></ProtectedRoute>}  />
       <Route path="/profile"   element={<ProtectedRoute><Profile /></ProtectedRoute>}   />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/quiz/:topic" element={<ProtectedRoute><Quiz /></ProtectedRoute>}    />
     </Routes>
   );
