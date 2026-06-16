@@ -8,21 +8,24 @@ export interface IUser extends Document {
   password: string;
   plan: 'Free' | 'Pro';
   createdAt: Date;
+  resetToken?: string;
+  resetTokenExpiry?: Date;
   comparePassword(candidate: string): Promise<boolean>;
 }
 
 const UserSchema = new Schema<IUser>(
   {
-    name: { type: String, required: true, trim: true },
-    username: { type: String, required: true, unique: true, trim: true, lowercase: true },
-    email: { type: String, required: true, unique: true, trim: true, lowercase: true },
-    password: { type: String, required: true },
-    plan: { type: String, enum: ['Free', 'Pro'], default: 'Free' },
+    name:               { type: String, required: true, trim: true },
+    username:           { type: String, required: true, unique: true, trim: true, lowercase: true },
+    email:              { type: String, required: true, unique: true, trim: true, lowercase: true },
+    password:           { type: String, required: true },
+    plan:               { type: String, enum: ['Free', 'Pro'], default: 'Free' },
+    resetToken:         { type: String },
+    resetTokenExpiry:   { type: Date },
   },
   { timestamps: true }
 );
 
-// Hash password before saving, only if it changed
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   const salt = await bcrypt.genSalt(10);

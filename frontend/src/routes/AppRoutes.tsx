@@ -10,6 +10,7 @@ import Settings  from "../pages/Settings/Settings";
 import Practice  from "../pages/Practice/Practice";
 import Profile   from "../pages/Profile/Profile";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import ResetPassword  from "../pages/ResetPassword/ResetPassword";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isLoggedIn } = useAuth();
@@ -39,6 +40,7 @@ const AppRoutes = () => {
       <Route path="/settings"  element={<ProtectedRoute><Settings /></ProtectedRoute>}  />
       <Route path="/profile"   element={<ProtectedRoute><Profile /></ProtectedRoute>}   />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password"  element={<ResetPassword />} />
       <Route path="/quiz/:topic" element={<ProtectedRoute><Quiz /></ProtectedRoute>}    />
     </Routes>
   );
