@@ -26,8 +26,16 @@ interface Summary {
 }
 
 const ALL_TOPICS = [
-  'Arrays', 'Linked Lists', 'Stacks & Queues', 'Sorting', 'Recursion',
-  'Trees', 'Binary Search', 'Graphs', 'Backtracking', 'Heaps',
+  { slug: 'arrays',        name: 'Arrays'          },
+  { slug: 'linked-lists',  name: 'Linked Lists'    },
+  { slug: 'stacks-queues', name: 'Stacks & Queues' },
+  { slug: 'sorting',       name: 'Sorting'         },
+  { slug: 'recursion',     name: 'Recursion'       },
+  { slug: 'trees',         name: 'Trees'           },
+  { slug: 'binary-search', name: 'Binary Search'   },
+  { slug: 'graphs',        name: 'Graphs'          },
+  { slug: 'backtracking',  name: 'Backtracking'    },
+  { slug: 'heaps',         name: 'Heaps'           },
 ];
 
 const scoreColor = (score: number) => {
@@ -71,16 +79,16 @@ export default function Progress() {
         setSummary(data.summary);
         setRecentScores(data.recentScores ?? []);
 
-        const byTopic: Record<string, { score: number; attempts: number }> = {};
+        const bySlug: Record<string, { score: number; attempts: number }> = {};
         for (const t of data.topicProgress ?? []) {
-          byTopic[t.topic] = { score: t.score ?? 0, attempts: t.attempts ?? 0 };
+          bySlug[t.topic] = { score: t.score ?? 0, attempts: t.attempts ?? 0 };
         }
 
         setTopicProgress(
-          ALL_TOPICS.map(topic => ({
-            topic,
-            score:    byTopic[topic]?.score    ?? 0,
-            attempts: byTopic[topic]?.attempts ?? 0,
+          ALL_TOPICS.map(({ slug, name }) => ({
+            topic:    name,
+            score:    bySlug[slug]?.score    ?? 0,
+            attempts: bySlug[slug]?.attempts ?? 0,
           }))
         );
       })
